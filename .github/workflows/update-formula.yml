@@ -1,0 +1,111 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [update-formula]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to update to (e.g., v0.1.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${{ github.event.client_payload.version }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Download release assets
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          VERSION_NUM="${VERSION#v}"
+
+          echo "Downloading SHA256 files for version ${VERSION} from valencia-releases..."
+          curl -fsSL "https://github.com/ss2d22/valencia-releases/releases/download/${VERSION}/valencia-darwin-aarch64.sha256" -o darwin-arm64.sha256
+          curl -fsSL "https://github.com/ss2d22/valencia-releases/releases/download/${VERSION}/valencia-darwin-x86_64.sha256" -o darwin-x86_64.sha256
+          curl -fsSL "https://github.com/ss2d22/valencia-releases/releases/download/${VERSION}/valencia-linux-x86_64.sha256" -o linux-x86_64.sha256
+
+          echo "Downloaded checksums:"
+          cat darwin-arm64.sha256
+          cat darwin-x86_64.sha256
+          cat linux-x86_64.sha256
+
+      - name: Update formula
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          VERSION_NUM="${VERSION#v}"
+
+          SHA_DARWIN_ARM64=$(cat darwin-arm64.sha256 | awk '{print $1}')
+          SHA_DARWIN_X86_64=$(cat darwin-x86_64.sha256 | awk '{print $1}')
+          SHA_LINUX_X86_64=$(cat linux-x86_64.sha256 | awk '{print $1}')
+
+          echo "Updating formula to version ${VERSION_NUM}..."
+          echo "  Darwin ARM64 SHA: ${SHA_DARWIN_ARM64}"
+          echo "  Darwin x86_64 SHA: ${SHA_DARWIN_X86_64}"
+          echo "  Linux x86_64 SHA: ${SHA_LINUX_X86_64}"
+
+          # Create the updated formula
+          cat > Formula/valencia.rb << EOF
+          class Valencia < Formula
+            desc "AI orchestrator for Claude Code - provides framework context and git automation"
+            homepage "https://github.com/ss2d22/valencia-ai-orchestrator"
+            version "${VERSION_NUM}"
+            license "MIT"
+
+            on_macos do
+              on_arm do
+                url "https://github.com/ss2d22/valencia-releases/releases/download/v${VERSION_NUM}/valencia-darwin-aarch64"
+                sha256 "${SHA_DARWIN_ARM64}"
+              end
+              on_intel do
+                url "https://github.com/ss2d22/valencia-releases/releases/download/v${VERSION_NUM}/valencia-darwin-x86_64"
+                sha256 "${SHA_DARWIN_X86_64}"
+              end
+            end
+
+            on_linux do
+              url "https://github.com/ss2d22/valencia-releases/releases/download/v${VERSION_NUM}/valencia-linux-x86_64"
+              sha256 "${SHA_LINUX_X86_64}"
+            end
+
+            def install
+              if OS.mac?
+                if Hardware::CPU.arm?
+                  bin.install "valencia-darwin-aarch64" => "valencia"
+                else
+                  bin.install "valencia-darwin-x86_64" => "valencia"
+                end
+              else
+                bin.install "valencia-linux-x86_64" => "valencia"
+              end
+            end
+
+            test do
+              assert_match "valencia", shell_output("#{bin}/valencia --version")
+            end
+          end
+          EOF
+
+          # Fix indentation (remove leading spaces from heredoc)
+          sed -i 's/^          //' Formula/valencia.rb
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/valencia.rb
+          git diff --staged --quiet || git commit -m "Update valencia to ${{ steps.version.outputs.version }}"
+          git push
