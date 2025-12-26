@@ -1,23 +1,23 @@
 class Valencia < Formula
   desc "AI orchestrator for Claude Code - provides framework context and git automation"
   homepage "https://github.com/ss2d22/valencia-ai-orchestrator"
-  version "0.5.0"
+  version "0.6.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/ss2d22/valencia-releases/releases/download/v0.5.0/valencia-darwin-aarch64"
-      sha256 "97e149ef8e29f568013d33595d4e2e75cc5f55da9798120df88af45a8629af82"
+      url "https://github.com/ss2d22/valencia-releases/releases/download/v0.6.0/valencia-darwin-aarch64"
+      sha256 "1d804a9bba1a0b2d82551ff7588cc9a2e9eda019efce7bfcdcec112f7f82d597"
     end
     on_intel do
-      url "https://github.com/ss2d22/valencia-releases/releases/download/v0.5.0/valencia-darwin-x86_64"
-      sha256 "3849c301e711c9ddbd631e9ce65263933ebd06eb04def42a16e74090971bc1e5"
+      url "https://github.com/ss2d22/valencia-releases/releases/download/v0.6.0/valencia-darwin-x86_64"
+      sha256 "f5484fc662111b917d7c255abd0498bf422dfce417ef2e6f85adc3e0f35d0507"
     end
   end
 
   on_linux do
-    url "https://github.com/ss2d22/valencia-releases/releases/download/v0.5.0/valencia-linux-x86_64"
-    sha256 "dedd658718358d030c3ae9b66009f3df9107e6ac923beff172da58a1b824c525"
+    url "https://github.com/ss2d22/valencia-releases/releases/download/v0.6.0/valencia-linux-x86_64"
+    sha256 "ccbda1afb560e3c77c57a1f63324aee8ae21f40acded57fc66a8c160b3cbff3b"
   end
 
   def install
