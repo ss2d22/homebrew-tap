@@ -1,27 +1,29 @@
 class Jiayang < Formula
   desc "Deploy, share and audit apps on Jiayang Cloud"
   homepage "https://jiayang.cloud"
-  version "0.1.1"
+  version "0.1.2"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.1/jiayang-aarch64-apple-darwin.tar.xz"
-      sha256 "a3eeeffc0a52a4e795c80b8d91b004505dc2cfc6276f00ec8aae2fbc12cf74fc"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.2/jiayang-aarch64-apple-darwin.tar.xz"
+      sha256 "f6e6bc21039586c2174249e22ad31bd913d0c8d96fb67d601bbf50bf30f762e9"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.1/jiayang-x86_64-apple-darwin.tar.xz"
-      sha256 "cd0d60f5ece252110e2432ec02d31e91caa1b6b13cfc8f5477b27c5f27068551"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.2/jiayang-x86_64-apple-darwin.tar.xz"
+      sha256 "748e72367cfc458fbd16669166eafa0a9fe9c50f866bfe6e2423e6b03c99558f"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.1/jiayang-aarch64-unknown-linux-musl.tar.xz"
-      sha256 "999b2ad226a0fddaa04088c0fc4e6263f3cf61d6683c678137b8bdf1460294c1"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.2/jiayang-aarch64-unknown-linux-musl.tar.xz"
+      sha256 "1f3fbea1724799196377f9227557bca0bca9fee3cb8f2b93e923aad4824b6a67"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.1/jiayang-x86_64-unknown-linux-musl.tar.xz"
-      sha256 "282c076b47e37fb219bd611fa178952a074b0fd228b37a535d3bbab65b19a788"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.2/jiayang-x86_64-unknown-linux-musl.tar.xz"
+      sha256 "a7eb98ea49765e3b3113dc8c42674e0193bb78b70c65707f62053425162dc60f"
     end
   end
+  # The jiayang CLI is proprietary, binaries only: https://jiayang.cloud/terms
+  # The SDKs and the agent plugin in ss2d22/jiayang are Apache-2.0.
   license "LicenseRef-Proprietary"
 
   BINARY_ALIASES = {
