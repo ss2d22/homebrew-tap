@@ -1,25 +1,25 @@
 class Jiayang < Formula
   desc "Deploy, share and audit apps on Jiayang Cloud"
   homepage "https://jiayang.cloud"
-  version "0.1.6"
+  version "0.1.7"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.6/jiayang-aarch64-apple-darwin.tar.xz"
-      sha256 "6bdb376f67ae1ee3407e9103ea7e7ccab64243c4c4426332f44c328c82ebb4e9"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.7/jiayang-aarch64-apple-darwin.tar.xz"
+      sha256 "61fa7a6d11c6228a1311b6fb69c2e1205782e376caae2494fb464fba7ab94d5a"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.6/jiayang-x86_64-apple-darwin.tar.xz"
-      sha256 "24d7e5b16ee7d00205349c1de10c73184bd72aa792427c68e2d8cbf151d39cce"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.7/jiayang-x86_64-apple-darwin.tar.xz"
+      sha256 "d13db5cf97b7c6f1121b7782723b2ac755ec8bff8962444fa1b51310ff5bea3d"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.6/jiayang-aarch64-unknown-linux-musl.tar.xz"
-      sha256 "8241e9f113ecdf18b441a84a066d7c04610a3020d6d1c03c914abf1931fa1946"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.7/jiayang-aarch64-unknown-linux-musl.tar.xz"
+      sha256 "7cf60a53c3909f37ff0cbd03c2a661f5a22cef1ad31f108e01cfac3488f88f5a"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.6/jiayang-x86_64-unknown-linux-musl.tar.xz"
-      sha256 "14baf66fd5bdb93a7fc30fbc6460aa89d6aa13c2eb86772ff1b7f0e56a372370"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.7/jiayang-x86_64-unknown-linux-musl.tar.xz"
+      sha256 "ace9ea6684df5861ca6b2b0eb05251966933c1b96707d3d18a8ba57ba00e7d51"
     end
   end
   # The jiayang CLI is proprietary, binaries only: https://jiayang.cloud/terms
