@@ -1,25 +1,25 @@
 class Jiayang < Formula
   desc "Deploy, share and audit apps on Jiayang Cloud"
   homepage "https://jiayang.cloud"
-  version "0.1.10"
+  version "0.1.11"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.10/jiayang-aarch64-apple-darwin.tar.xz"
-      sha256 "8e880edec0af1f6f9c03aa48601c00f6ac52bfd16154657b1ce275cccdfe22d6"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.11/jiayang-aarch64-apple-darwin.tar.xz"
+      sha256 "82178b0a6d5ad6794290adb327fe9522dfa57eab2e199e73578f5cc7d1327b39"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.10/jiayang-x86_64-apple-darwin.tar.xz"
-      sha256 "151e71732e0490102455459a6cfe39c1b0271a7337cbf04324375fb4b2396da9"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.11/jiayang-x86_64-apple-darwin.tar.xz"
+      sha256 "47eff2b165a37ac69bea443c8f38d2590581e381d7c87ccf35be6cf03451b7c1"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.10/jiayang-aarch64-unknown-linux-musl.tar.xz"
-      sha256 "27aca2b39a906c789586e6cb9054106dfe7e59c904161dc73726919f05bf8546"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.11/jiayang-aarch64-unknown-linux-musl.tar.xz"
+      sha256 "93fc193cdbffb7246bed63b201df1ddd1d9407989282d35d4d14ac6636885361"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.10/jiayang-x86_64-unknown-linux-musl.tar.xz"
-      sha256 "f4be92492716fd9fe2c649d2e13a201e8f87e6ddf4bfd3e55e97946a877e8af9"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.11/jiayang-x86_64-unknown-linux-musl.tar.xz"
+      sha256 "84b5cae7d3030ee9e7a5e7e66f74445d13335a3c795e5573107641a14c8b4c85"
     end
   end
   # The jiayang CLI is proprietary, binaries only: https://jiayang.cloud/terms
@@ -28,6 +28,7 @@ class Jiayang < Formula
 
   BINARY_ALIASES = {
     "aarch64-apple-darwin": {},
+    "aarch64-pc-windows-gnu": {},
     "aarch64-unknown-linux-gnu": {},
     "aarch64-unknown-linux-musl-dynamic": {},
     "aarch64-unknown-linux-musl-static": {},
