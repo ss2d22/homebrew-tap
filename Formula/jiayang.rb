@@ -1,25 +1,25 @@
 class Jiayang < Formula
-  desc "Deploy, share and audit apps on Jiayang Cloud"
+  desc "Deploy private apps and share them by email, from a terminal or an AI agent"
   homepage "https://jiayang.cloud"
-  version "0.1.12"
+  version "0.1.13"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.12/jiayang-aarch64-apple-darwin.tar.xz"
-      sha256 "4233e3da16a30762c8a5653de38214342220cb8d7c6e515ee03f6ba324f5e0bd"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.13/jiayang-aarch64-apple-darwin.tar.xz"
+      sha256 "c9d23bf6a1ca4268ebfbaa5470a6a379ea9e6e7b84d2d4e80700419b750c5eaa"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.12/jiayang-x86_64-apple-darwin.tar.xz"
-      sha256 "37595605fafaab2e9733960d91bcb8bc94a6b7e7cab785057e7075d73ccb2514"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.13/jiayang-x86_64-apple-darwin.tar.xz"
+      sha256 "4f63996e294a32f34640c46ebe740548ffba8f1573980925ba5b936e03e857b2"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.12/jiayang-aarch64-unknown-linux-musl.tar.xz"
-      sha256 "0934f9e7ac00e356802feccdb5b35eea12a12387074f63ef83f532235e1a88fb"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.13/jiayang-aarch64-unknown-linux-musl.tar.xz"
+      sha256 "c8db169c24cf408e195a6e2e71edd15af77a59ee28dd26ad138d88fbb1625298"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.12/jiayang-x86_64-unknown-linux-musl.tar.xz"
-      sha256 "087eee9e1a48ccfb3ab8651ed01fd19cce0af86661876e1802eb20a1bec50351"
+      url "https://github.com/ss2d22/jiayang/releases/download/v0.1.13/jiayang-x86_64-unknown-linux-musl.tar.xz"
+      sha256 "821c596df78b9fea65b1cf5b32f49b444855882a61c7ff24b9e486ab58fc4e22"
     end
   end
   # The jiayang CLI is proprietary, binaries only: https://jiayang.cloud/terms
